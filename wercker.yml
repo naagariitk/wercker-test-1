@@ -1,0 +1,33 @@
+box:
+  id: golang
+  ports:
+    - "5000"
+
+dev:
+  steps:
+    - internal/watch:
+        code: |
+          go build ./...
+          ./source
+        reload: true
+
+# Build definition
+build:
+  docker: true
+  # The steps that will be executed on build
+  steps:
+
+    # golint step!
+    - wercker/golint
+
+    # Build the project
+    - script:
+        name: go build
+        code: |
+          echo "env..."
+          env
+    # Test the project
+    - script:
+        name: go test
+        code: |
+          go test ./...
