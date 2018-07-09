@@ -13,7 +13,7 @@ dev:
 
 # Build definition
 build:
-docker: true
+  docker: true
   # The steps that will be executed on build
   steps:
 
